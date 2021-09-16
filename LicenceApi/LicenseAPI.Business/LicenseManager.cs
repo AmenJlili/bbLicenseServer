@@ -9,23 +9,22 @@ namespace LicenseAPI.Business
     {
         public string PrivateKey { get; set; }
         public string PassPhrase { get; set; }
-
         public string PublicKey { get; set; }
         public LicenseManager()
         {
-             
+
         }
 
-        public void New(bbLicense bblicense, string passPhrase, string licensePath)
+        public string New(string CustomerName, string CustomerEmail, DateTime Expiry, string passPhrase, string licensePath)
         {
-            var license = License.New()
-    .WithUniqueIdentifier(Guid.NewGuid())
-    .As(LicenseType.Standard)
-    .ExpiresAt(bblicense.Expiry)
-    .LicensedTo($"{bblicense.CustomerName} {bblicense.CustomerLastName}", bblicense.CustomerEmail)
+
+            var license = License.New().WithUniqueIdentifier(Guid.NewGuid()).As(LicenseType.Standard).ExpiresAt(Expiry)
+     .LicensedTo(CustomerName, CustomerEmail)
     .CreateAndSignWithPrivateKey(PrivateKey, passPhrase);
 
-        File.WriteAllText(licensePath, license.ToString(), Encoding.UTF8);
+            return license.ToString();
+
+            //File.WriteAllText(licensePath, license.ToString(), Encoding.UTF8);
         }
     }
 
@@ -33,7 +32,7 @@ namespace LicenseAPI.Business
     {
         public string CustomerName { get; set; }
         public string CustomerLastName { get; set; }
-     
+
         public string CustomerEmail { get; set; }
 
         public DateTime Expiry { get; set; }

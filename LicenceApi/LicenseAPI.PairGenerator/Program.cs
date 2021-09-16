@@ -21,13 +21,6 @@ namespace LicenseAPI.PairGenerator
             var keyPair = keyGenerator.GenerateKeyPair();
             var privateKey = keyPair.ToEncryptedPrivateKeyString(passPhrase);
             var publicKey = keyPair.ToPublicKeyString();
-
-            Console.WriteLine($"Pass    : {passPhrase}");
-            Console.WriteLine($"Private : {privateKey}");
-            Console.WriteLine($"Public  : {publicKey}");
-
-
-            Console.Read();
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using LicenseAPI.Business;
 
 namespace LicenceApi.Controllers
 {
@@ -74,8 +75,11 @@ namespace LicenceApi.Controllers
             string result = string.Empty;
             try
             {
+                LicenseManager Createobj = new LicenseManager();
+                string passPhrase = "Blue Byte Systems, Inc.";
                 ////Assign LicenceKey Logic here
-                LicModel.Licensekey = "1234567890";
+                DateTime expirydate = Convert.ToDateTime(LicModel.ExpirationDate);
+                LicModel.Licensekey = Createobj.New(LicModel.CustomerName, LicModel.CustomerEmail, expirydate, passPhrase, "");
                 ////Assign LicenceKey Logic here
                 using (SqlCommand cmd = new SqlCommand("CreateNewLicence", con))
                 {
@@ -89,7 +93,7 @@ namespace LicenceApi.Controllers
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        result = dr["Id"].ToString(); 
+                        result = dr["Id"].ToString();
 
                     }
                 }
@@ -118,7 +122,7 @@ namespace LicenceApi.Controllers
 
                     cmd.Parameters.AddWithValue("@Id", LicModel.Id);
                     cmd.Parameters.AddWithValue("@Deletedate", LicModel.DeleteDate);
-                    
+
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
