@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>F:\LicenceGenartionWeb</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/LicenceWeb.dll">
+      <publishTime>10/02/2021 10:23:25</publishTime>
+    </File>
+    <File Include="Index.html">
+      <publishTime>08/29/2021 14:50:32</publishTime>
+    </File>
+    <File Include="Resource/CSS/bootstrap.min.css">
+      <publishTime>08/27/2021 13:40:09</publishTime>
+    </File>
+    <File Include="Resource/CSS/LicenceList.css">
+      <publishTime>09/16/2021 22:05:29</publishTime>
+    </File>
+    <File Include="Resource/CSS/LogIn.css">
+      <publishTime>08/26/2021 16:33:36</publishTime>
+    </File>
+    <File Include="Resource/Javascript/Common.js">
+      <publishTime>08/29/2021 11:20:01</publishTime>
+    </File>
+    <File Include="Resource/Javascript/jquery-ui.min.js">
+      <publishTime>08/27/2021 13:41:17</publishTime>
+    </File>
+    <File Include="Resource/Javascript/jquery.min.js">
+      <publishTime>08/27/2021 13:40:50</publishTime>
+    </File>
+    <File Include="Resource/Javascript/LicenceListScript.js">
+      <publishTime>09/16/2021 21:56:56</publishTime>
+    </File>
+    <File Include="Resource/Javascript/LoginScript.js">
+      <publishTime>08/27/2021 18:08:39</publishTime>
+    </File>
+    <File Include="Resource/Javascript/paging.js">
+      <publishTime>08/27/2021 22:28:08</publishTime>
+    </File>
+    <File Include="View/LicenceList.html">
+      <publishTime>09/16/2021 22:03:04</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/02/2021 10:23:26</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
