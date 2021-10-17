@@ -22,9 +22,10 @@ namespace LicenseAPI.Business
      .LicensedTo(CustomerName, CustomerEmail)
     .CreateAndSignWithPrivateKey(PrivateKey, passPhrase);
 
+            File.WriteAllText(licensePath, license.ToString(), Encoding.UTF8);
+
             return license.ToString();
 
-            //File.WriteAllText(licensePath, license.ToString(), Encoding.UTF8);
         }
     }
 
