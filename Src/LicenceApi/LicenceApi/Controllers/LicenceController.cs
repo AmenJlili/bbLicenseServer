@@ -1,4 +1,4 @@
-﻿using APILicenceGenration;
+﻿
 using LicenceApi.Models;
 using Newtonsoft.Json;
 using System;
@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -53,27 +54,27 @@ namespace LicenceApi.Controllers
         [Route("getlicencedata")]
         public string GetLicenceData(LicenceTable LicModel)
         {
-            
+
             string result = string.Empty;
             try
             {
                 DataTable CustomerList = new DataTable();
 
                 using (var cmd = new SqlCommand("GetAllLicenceData", con))
-              
+
                 using (var da = new SqlDataAdapter(cmd))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SerchName", LicModel.SerchName);
-                    cmd.Parameters.AddWithValue("@Serachstring", LicModel.Serachstring);                   
+                    cmd.Parameters.AddWithValue("@Serachstring", LicModel.Serachstring);
                     da.Fill(CustomerList);
                     result = JsonConvert.SerializeObject(CustomerList);
-                   
+
                 }
             }
             catch (Exception ex)
             {
-             
+                Log4net.createlog("Error In File GetLicenceData :", ex.InnerException.ToString());
                 con.Close();
             }
             con.Close();
@@ -87,6 +88,7 @@ namespace LicenceApi.Controllers
         public string CreateLicence(LicenceTable LicModel)
         {
             string result = string.Empty;
+
             try
             {
                 LicenseManager Createobj = new LicenseManager();
@@ -108,7 +110,6 @@ namespace LicenceApi.Controllers
                     cmd.Parameters.AddWithValue("@CustomerEmail", LicModel.CustomerEmail);
                     cmd.Parameters.AddWithValue("@Licensekey", LicModel.Licensekey);
 
-
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
@@ -120,6 +121,7 @@ namespace LicenceApi.Controllers
             }
             catch (Exception ex)
             {
+                Log4net.createlog("Error In File CreateLicence :", ex.InnerException.ToString());
                 con.Close();
             }
             con.Close();
@@ -155,6 +157,7 @@ namespace LicenceApi.Controllers
             }
             catch (Exception ex)
             {
+                Log4net.createlog("Error In File DeleteLicence :", ex.InnerException.ToString());
                 con.Close();
             }
             con.Close();
@@ -167,19 +170,42 @@ namespace LicenceApi.Controllers
         [Route("loadsignaturedetail")]
         public string Loadsignaturedetail(LicenceTable LicModel)
         {
+           
             string result = string.Empty;
             try
             {
+
                 LicenseManager Createobj = new LicenseManager();
                 DateTime expirydate = new DateTime();
-                if (!string.IsNullOrEmpty(LicModel.ExpirationDate))
+
+                var licenseFile = HttpContext.Current.Server.MapPath(string.Format("~/App_Data/" + "TestLicense_" + LicModel.Id.ToString() + ".xml"));
+
+                if (!File.Exists(licenseFile))
                 {
-                    expirydate = Convert.ToDateTime(LicModel.ExpirationDate);
-                    result = Createobj.New(LicModel.CustomerName, LicModel.CustomerEmail, expirydate, LicModel.Licensekey);
+                    if (!string.IsNullOrEmpty(LicModel.ExpirationDate))
+                    {
+
+                        string dt = LicModel.ExpirationDate.ToString();
+                        expirydate = DateTime.ParseExact(dt, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                       
+                        result = Createobj.GenerateKeys(LicModel.CustomerName, LicModel.CustomerEmail, LicModel.Licensekey, expirydate);
+                        
+                        File.WriteAllText(licenseFile, result);
+                    }
+                    else
+                    {
+
+                        result = Createobj.GenerateKeys(LicModel.CustomerName, LicModel.CustomerEmail, LicModel.Licensekey, null);
+                        
+                        File.WriteAllText(licenseFile, result);
+                       
+
+                    }
                 }
                 else
                 {
-                    result = Createobj.Newwithoutexpiry(LicModel.CustomerName, LicModel.CustomerEmail, LicModel.Licensekey);
+                    result = File.ReadAllText(licenseFile);
+                   
                 }
 
                 result = JsonConvert.SerializeObject(result);
@@ -187,9 +213,12 @@ namespace LicenceApi.Controllers
             catch (Exception ex)
             {
                 con.Close();
+                result = "";
+                Log4net.createlog("Error In File Loadsignaturedetail :", ex.InnerException.ToString());
             }
             con.Close();
             return result;
+            
         }
 
         [EnableCors("*", "*", "*")]

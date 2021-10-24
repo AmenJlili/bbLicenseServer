@@ -13,10 +13,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/24/2021 14:55:03</publishTime>
     </File>
     <File Include="bin/APILicenceGenration.dll">
-      <publishTime>02/10/2021 10:26:32</publishTime>
+      <publishTime>10/24/2021 15:06:26</publishTime>
     </File>
     <File Include="bin/LicenceApi.dll">
-      <publishTime>10/09/2021 16:40:51</publishTime>
+      <publishTime>10/24/2021 15:34:37</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Cors.dll">
       <publishTime>08/28/2021 12:33:43</publishTime>
@@ -84,6 +84,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/WebGrease.dll">
       <publishTime>08/24/2021 14:55:03</publishTime>
     </File>
+    <File Include="DLL/Standard.Licensing.dll">
+      <publishTime>09/15/2021 20:59:20</publishTime>
+    </File>
     <File Include="favicon.ico">
       <publishTime>08/24/2021 14:54:48</publishTime>
     </File>
@@ -94,7 +97,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/28/2021 23:45:14</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/09/2021 14:50:07</publishTime>
+      <publishTime>09/10/2021 14:50:07</publishTime>
     </File>
   </ItemGroup>
 </Project>

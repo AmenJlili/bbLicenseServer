@@ -292,7 +292,7 @@ function AddLicence() {
             var data = JSON.parse(data);
             $('#myModal').css("display", "none");
             LoadData(4, '', 1);
-            alert("Data saved....");
+            //alert("Data saved....");
             // $(window).on("load", LoadPaging);
 
         },
@@ -323,12 +323,14 @@ function Download(id) {
     var Expirationdate = '';
     var CustomerName = '';
     var CustomerEmail = '';
+    var Id = '';
     for (var i = 0; i < LoadAllData.length; i++) {
         if (LoadAllData[i].Id == id) {
             Licensekey = LoadAllData[i].Licensekey;
             Expirationdate = LoadAllData[i].Expirationdate;
             CustomerName = LoadAllData[i].CustomerName;
             CustomerEmail = LoadAllData[i].CustomerEmail;
+            Id = LoadAllData[i].Id;
         }
     }
 
@@ -336,7 +338,8 @@ function Download(id) {
         ExpirationDate: Expirationdate,
         CustomerName: CustomerName,
         CustomerEmail: CustomerEmail,
-        Licensekey: Licensekey
+        Licensekey: Licensekey,
+        Id: Id
     };
 
     $.ajax({
@@ -352,8 +355,10 @@ function Download(id) {
         contentType: "application/json",
         dataType: "json",
         success: function (data, status, xhr) {
+
+            console.log(data);
             var data = JSON.parse(data);
-            storedata = '<Licensekey>' + Licensekey + '<Licensekey> \n';
+            //storedata = '<Licensekey>' + Licensekey + '<Licensekey> \n';
             storedata += data;
             var blob = new Blob([storedata], {
                 type: 'application/json'

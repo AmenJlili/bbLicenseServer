@@ -1,0 +1,10 @@
+<License>
+  <Id>74315edb-2e5b-425e-8ce7-d64349da925e</Id>
+  <Type>Standard</Type>
+  <Expiration>Mon, 01 Nov 2021 07:00:00 GMT</Expiration>
+  <Customer>
+    <Name>test1</Name>
+    <Email>test1@gmail.com</Email>
+  </Customer>
+  <Signature>MEYCIQCxyF2q40BMkZGONwN2+CHVKT4Mzr70f57lZ2N9eGwZXgIhAPctq7dIe1AFKh/WvI1K+Em5E4o/HuLafodl/7qlyb4Q</Signature>
+</License>
