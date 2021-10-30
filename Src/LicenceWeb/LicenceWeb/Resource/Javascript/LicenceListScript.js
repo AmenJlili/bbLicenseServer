@@ -2,6 +2,9 @@
 
 $(window).on('load', function () {
 
+    var getfooter = document.getElementById('footertext');
+    getfooter.innerText = 'Copyright ©' + new Date().getFullYear() + ' by Blue Byte Systems, Inc.';
+
     if (localStorage.getItem('UserName') === null && localStorage.getItem('Password') === null) {
         var NewUrl = window.location.origin + "/Index.html";
         window.location.href = '';
@@ -21,6 +24,7 @@ $(window).on('load', function () {
 
 var LoadAllData = '';
 var modal = document.getElementById('DeleteModel');
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
@@ -177,8 +181,6 @@ function Deletesubmit() {
             if (data == 'Success') {
                 $('#DeleteModel').css("display", "none");
                 LoadData(4, '', 1);
-
-                alert("Data deleted....");
             }
 
         },
@@ -365,7 +367,10 @@ function Download(id) {
             });
             var link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
-            link.download = "Licenceexport.XML";
+            var FileName = CustomerName.trim();
+            FileName = FileName.replace(' ', '_');
+            FileName = FileName.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+            link.download = FileName + "_licensKey.XML";
             link.click();
         },
         error: function (jqXhr, textStatus, errorMessage) {
