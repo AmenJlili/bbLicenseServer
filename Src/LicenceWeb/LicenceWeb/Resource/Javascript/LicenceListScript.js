@@ -368,7 +368,6 @@ function Download(id) {
             var link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
             var FileName = CustomerName.trim();
-            FileName = FileName.replace(' ', '_');
             FileName = FileName.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
             link.download = FileName + "_licensKey.XML";
             link.click();
