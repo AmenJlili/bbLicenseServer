@@ -1,5 +1,0 @@
-C:\Users\Akki\Documents\GitHub\bbLicenseServer\LicenceApi\LicenseAPI.Business\bin\Debug\LicenseAPI.Business.dll
-C:\Users\Akki\Documents\GitHub\bbLicenseServer\LicenceApi\LicenseAPI.Business\bin\Debug\LicenseAPI.Business.pdb
-C:\Users\Akki\Documents\GitHub\bbLicenseServer\LicenceApi\LicenseAPI.Business\bin\Debug\Standard.Licensing.dll
-C:\Users\Akki\Documents\GitHub\bbLicenseServer\LicenceApi\LicenseAPI.Business\obj\Debug\LicenseAPI.Business.dll
-C:\Users\Akki\Documents\GitHub\bbLicenseServer\LicenceApi\LicenseAPI.Business\obj\Debug\LicenseAPI.Business.pdb

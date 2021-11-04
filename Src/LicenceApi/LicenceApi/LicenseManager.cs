@@ -1,10 +1,12 @@
 ﻿using Standard.Licensing;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LicenceApi
+namespace APILicenceGenration
 {
     public class LicenseManager
     {
@@ -23,6 +25,7 @@ namespace LicenceApi
          .LicensedTo(CustomerName, CustomerEmail)
         .CreateAndSignWithPrivateKey(PrivateKey, passPhrase);
 
+                // File.WriteAllText(licensePath, license.ToString(), Encoding.UTF8);
                 licenseMes = license.ToString();
             }
             catch (Exception ex)
@@ -44,7 +47,7 @@ namespace LicenceApi
          .LicensedTo(CustomerName, CustomerEmail)
         .CreateAndSignWithPrivateKey(PrivateKey, passPhrase);
 
-
+                //   File.WriteAllText(licensePath, license.ToString(), Encoding.UTF8);
                 licenseMes = license.ToString();
             }
             catch (Exception ex)
