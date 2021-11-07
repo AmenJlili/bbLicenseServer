@@ -228,9 +228,9 @@ function AddLicence() {
         $("#expdt").next(".validation").remove();
     }
 
-    if (Expirydate != '') {
-        var curdate = new Date(Expirydate);
-        Expirydate = curdate.getDate() + "/" + (curdate.getMonth() + 1) + "/" + curdate.getFullYear();
+    if (Expirydate != '') { 
+       var curdate = Expirydate.split('-');
+        Expirydate = curdate[2] + "/" + curdate[1] + "/" + curdate[0];
     }
 
     if (Customername == "") {
